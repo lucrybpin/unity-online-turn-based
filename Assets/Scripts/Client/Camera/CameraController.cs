@@ -17,10 +17,14 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Camera _combatCamera;
     [SerializeField] private FlatCamera _flatCamera;
 
+    [SerializeField] private bool _debugView;
+
     private Camera _currentCamera;
     
     private PreparationCameraController _preparationCameraController;
     private CombatCameraController _combatCameraController;
+
+    [SerializeField] private ServerController _serverController;
 
     public Camera CurrentCamera { get => _currentCamera; }
 
@@ -63,6 +67,26 @@ public class CameraController : MonoBehaviour
     public void SetFocus(Vector3 focusPoint)
     {
         _preparationCameraController.SetFocus(focusPoint);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(!_debugView)
+            return;
+
+        Gizmos.color = Color.green;
+
+        Grid grid = _serverController.GameState.grid;
+        for (int x = 0; x < grid.GetXLength() ; x++)
+        {
+            for (int z = 0; z < grid.GetZLength(); z++)
+            {
+                Gizmos.DrawLine(new Vector3(x-0.5f, 0f, z-0.5f), new Vector3(x+0.5f, 0f, z-0.5f));
+                Gizmos.DrawLine(new Vector3(x-0.5f, 0f, z-0.5f), new Vector3(x-0.5f, 0f, z+0.5f));
+                Gizmos.DrawLine(new Vector3(x-0.5f, 0f, z+0.5f), new Vector3(x+0.5f, 0f, z+0.5f));
+                Gizmos.DrawLine(new Vector3(x+0.5f, 0f, z-0.5f), new Vector3(x+0.5f, 0f, z+0.5f));
+            }
+        }
     }
 }
 
@@ -146,4 +170,5 @@ public class CombatCameraController
     {
         _transform.gameObject.SetActive(false);
     }
+
 }

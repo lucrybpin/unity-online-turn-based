@@ -13,7 +13,6 @@ public class InputController
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Client - InputController - Clicked");
             Ray ray = currentCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit [] hits = Physics.RaycastAll(ray);
             foreach(RaycastHit hit in hits)
@@ -22,6 +21,8 @@ public class InputController
                 {
                     _client.AskForReposition(hit.transform.position);
                 }
+
+                Debug.Log($"click world position: {hit.point}, x grid = {Grid.WorldToGridPosition(hit.point)}"); 
             }
         }
     }

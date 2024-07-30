@@ -10,6 +10,7 @@ public struct GameState
     public List<Vector3> StartingPositions;
     public float TimeLeft;
     public int CurrentTurnIndex;
+    public Grid grid;
 
     public ParticipantData GetParticipantData(ulong userId)
     {

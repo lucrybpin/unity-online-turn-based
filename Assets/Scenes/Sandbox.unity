@@ -16196,6 +16196,8 @@ MonoBehaviour:
   _preparationCamera: {fileID: 1464164253}
   _combatCamera: {fileID: 963194227}
   _flatCamera: {fileID: 1464164254}
+  _debugView: 0
+  _serverController: {fileID: 66287779}
 --- !u!1 &1781481986
 GameObject:
   m_ObjectHideFlags: 0

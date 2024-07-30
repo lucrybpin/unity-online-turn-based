@@ -7,7 +7,9 @@ public class ServerController : NetworkBehaviour
     [SerializeField] private ClientController _clients;
     [SerializeField] private List<ulong> _connectedParticipants; // this could be a hashset but Editor can't serialize it
     [SerializeField] private GameState _gameState;
-    
+
+    public GameState GameState { get => _gameState; }
+
     private void Start()
     {
         NetworkManager.Singleton.OnServerStarted += OnServerStarted;
@@ -212,6 +214,9 @@ public class ServerController : NetworkBehaviour
         
         // Participants
         gameState.Participants = new List<ParticipantData>();
+
+        // Grid
+        gameState.grid = new Grid(20,20);
 
         // Time Left
         gameState.TimeLeft = 10;
