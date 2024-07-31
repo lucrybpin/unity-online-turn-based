@@ -74,13 +74,23 @@ public class CameraController : MonoBehaviour
         if(!_debugView)
             return;
 
-        Gizmos.color = Color.green;
-
-        Grid grid = _serverController.GameState.grid;
-        for (int x = 0; x < grid.GetXLength() ; x++)
+        GridSystem gridSystem = _serverController.GameState.GridSystem;
+        for (int x = 0; x < gridSystem.Grid.GetLength(0) ; x++)
         {
-            for (int z = 0; z < grid.GetZLength(); z++)
+            for (int z = 0; z < gridSystem.Grid.GetLength(1); z++)
             {
+                Gizmos.color = Color.white;
+                if (gridSystem.Grid[x,z].Type == GridObjectType.Obstacle)
+                {
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawLine(new Vector3(x - 0.5f, 0f, z - 0.5f), new Vector3(x + 0.5f, 0f, z + 0.5f));
+                    Gizmos.DrawLine(new Vector3(x - 0.5f, 0f, z + 0.5f), new Vector3(x + 0.5f, 0f, z - 0.5f));
+                }
+                else if(gridSystem.Grid[x,z].Type == GridObjectType.Character)
+                {
+                    Gizmos.color = Color.green;
+                }
+
                 Gizmos.DrawLine(new Vector3(x-0.5f, 0f, z-0.5f), new Vector3(x+0.5f, 0f, z-0.5f));
                 Gizmos.DrawLine(new Vector3(x-0.5f, 0f, z-0.5f), new Vector3(x-0.5f, 0f, z+0.5f));
                 Gizmos.DrawLine(new Vector3(x-0.5f, 0f, z+0.5f), new Vector3(x+0.5f, 0f, z+0.5f));

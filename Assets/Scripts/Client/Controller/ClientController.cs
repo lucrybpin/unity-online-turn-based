@@ -145,7 +145,6 @@ public class ClientController : NetworkBehaviour
     {
         Debug.Log($"Client - Combat Started");
         _gameState.matchState = MatchState.Combat;
-        _gameState.TimeLeft = 25;
         _gameState.CurrentTurnIndex = 0;
 
         //Hide Starting Cells

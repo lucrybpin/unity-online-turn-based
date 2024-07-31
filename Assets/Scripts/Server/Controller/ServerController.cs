@@ -76,6 +76,8 @@ public class ServerController : NetworkBehaviour
                 ParticipantData playerData = _gameState.Participants.Find(x => x.Position == startingPosition);
                 if (playerData.Equals(defaultPlayer))
                     playerJoined.Position = startingPosition;
+
+                // _gameState.GridSystem.SetCharacter(GridSystem.WorldToGridPosition(startingPosition), playerJoined.ParticipantId);
             }
             _gameState.Participants.Add(playerJoined);
             _connectedParticipants.Add(connectedClientId);
@@ -216,7 +218,43 @@ public class ServerController : NetworkBehaviour
         gameState.Participants = new List<ParticipantData>();
 
         // Grid
-        gameState.grid = new Grid(20,20);
+        gameState.GridSystem = new GridSystem(20,20);
+        gameState.GridSystem.SetObstacle(8,6);
+        gameState.GridSystem.SetObstacle(7,6);
+        gameState.GridSystem.SetObstacle(6,6);
+        gameState.GridSystem.SetObstacle(5,6);
+        gameState.GridSystem.SetObstacle(4,6);
+        gameState.GridSystem.SetObstacle(3,6);
+        gameState.GridSystem.SetObstacle(3,7);
+        gameState.GridSystem.SetObstacle(3,8);
+        gameState.GridSystem.SetObstacle(3,12);
+        gameState.GridSystem.SetObstacle(3,13);
+        gameState.GridSystem.SetObstacle(3,14);
+        gameState.GridSystem.SetObstacle(4, 14);
+        gameState.GridSystem.SetObstacle(5, 14);
+        gameState.GridSystem.SetObstacle(6, 14);
+        gameState.GridSystem.SetObstacle(7, 14);
+        gameState.GridSystem.SetObstacle(8, 14);
+        gameState.GridSystem.SetObstacle(14, 14);
+        gameState.GridSystem.SetObstacle(14, 13);
+        gameState.GridSystem.SetObstacle(14, 12);
+        gameState.GridSystem.SetObstacle(14, 11);
+        gameState.GridSystem.SetObstacle(14, 10);
+        gameState.GridSystem.SetObstacle(14, 9);
+        gameState.GridSystem.SetObstacle(14, 8);
+        gameState.GridSystem.SetObstacle(14, 7);
+        gameState.GridSystem.SetObstacle(14, 6);
+        gameState.GridSystem.SetObstacle(11, 6);
+        gameState.GridSystem.SetObstacle(12, 6);
+        gameState.GridSystem.SetObstacle(13, 6);
+        gameState.GridSystem.SetObstacle(19, 14);
+        gameState.GridSystem.SetObstacle(19, 13);
+        gameState.GridSystem.SetObstacle(19, 12);
+        gameState.GridSystem.SetObstacle(19, 11);
+        gameState.GridSystem.SetObstacle(8, 12);
+        gameState.GridSystem.SetObstacle(8, 11);
+        gameState.GridSystem.SetObstacle(9, 11);
+        gameState.GridSystem.SetObstacle(9, 12);
 
         // Time Left
         gameState.TimeLeft = 10;

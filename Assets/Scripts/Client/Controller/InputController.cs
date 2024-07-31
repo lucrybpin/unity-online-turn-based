@@ -22,7 +22,7 @@ public class InputController
                     _client.AskForReposition(hit.transform.position);
                 }
 
-                Debug.Log($"click world position: {hit.point}, x grid = {Grid.WorldToGridPosition(hit.point)}"); 
+                Debug.Log($"click world position: {hit.point}, x grid = {GridSystem.WorldToGridPosition(hit.point)}"); 
             }
         }
     }
