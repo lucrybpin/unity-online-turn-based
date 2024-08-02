@@ -74,11 +74,11 @@ public class ServerController : NetworkBehaviour
             {
                 ParticipantData defaultPlayer = default;
                 ParticipantData playerData = _gameState.Participants.Find(x => x.Position == startingPosition);
-                if (playerData.Equals(defaultPlayer))
+                if (playerData.Equals(defaultPlayer)){
                     playerJoined.Position = startingPosition;
-
-                // _gameState.GridSystem.SetCharacter(GridSystem.WorldToGridPosition(startingPosition), playerJoined.ParticipantId);
+                }
             }
+            _gameState.GridSystem.SetCharacter(GridSystem.WorldToGridPosition(playerJoined.Position), playerJoined.ParticipantId);
             _gameState.Participants.Add(playerJoined);
             _connectedParticipants.Add(connectedClientId);
         }
