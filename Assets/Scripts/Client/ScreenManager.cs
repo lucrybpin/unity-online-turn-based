@@ -11,7 +11,6 @@ public class ScreenManager : Singleton<ScreenManager>
         Sandbox
     }
 
-
     public async void LoadScene(SceneID sceneId)
     {
         AsyncOperation scene = SceneManager.LoadSceneAsync(sceneId.ToString());
@@ -19,6 +18,7 @@ public class ScreenManager : Singleton<ScreenManager>
         LoadingController.Instance.Show();
         do
         {
+            LoadingController.Instance.SetProgress(scene.progress);
             await Task.Delay(10000);//TODO: REMOVE, JUST TO CHECK IF IT IS INCREASING BAR
         } while (scene.progress < 0.9f);
 

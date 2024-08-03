@@ -1,12 +1,13 @@
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using Michsky.MUIP;
 
 public class LoadingController : Singleton<LoadingController> 
 {
     [SerializeField] private TMP_Text _loadingText;
-    [SerializeField] Canvas _canvas;
+    [SerializeField] private Canvas _canvas;
+    [SerializeField] private ProgressBar _progressBar;
 
 
     private void Start()
@@ -22,6 +23,11 @@ public class LoadingController : Singleton<LoadingController>
     public void Hide()
     {
         _canvas.gameObject.SetActive(false);
+    }
+
+    public void SetProgress(float value)
+    {
+        _progressBar.currentPercent = value;
     }
 
     private async void AnimateLoadingText()
