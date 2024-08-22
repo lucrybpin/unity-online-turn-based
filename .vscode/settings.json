@@ -52,5 +52,11 @@
         "Temp/": true
     },
     "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "learning-netcode-for-game-objects.sln"
+    "dotnet.defaultSolution": "learning-netcode-for-game-objects.sln",
+
+    // Vim
+    "vim.useSystemClipboard": true,
+    "vim.handleKeys": {
+        "<C-p>": false
+    }
 }

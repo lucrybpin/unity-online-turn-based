@@ -1,13 +1,12 @@
 
 using System.Collections.Generic;
-using UnityEngine;
 
 [System.Serializable]
 public struct GameState
 {
     public MatchState matchState;
     public List<ParticipantData> Participants;
-    public List<Vector3> StartingPositions;
+    public List<NetworkVector3> StartingPositions;
     public float TimeLeft;
     public int CurrentTurnIndex;
     public GridSystem GridSystem;
@@ -40,7 +39,7 @@ public struct ParticipantData
     public ulong ParticipantId; // 0 - 499 = Players, 500+ = NPCs
     public int Initiative;
     public int CurrentLife;
-    public Vector3 Position;
+    public NetworkVector3 Position;
     public bool IsConnected;
     public bool IsReady;
     public int ParticipantTurn;

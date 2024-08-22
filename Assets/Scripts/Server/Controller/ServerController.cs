@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -70,7 +71,7 @@ public class ServerController : NetworkBehaviour
             playerJoined.CurrentLife = 100;
             
             // Find Available Starting Position
-            foreach (Vector3 startingPosition in _gameState.StartingPositions)
+            foreach (NetworkVector3 startingPosition in _gameState.StartingPositions)
             {
                 ParticipantData defaultPlayer = default;
                 ParticipantData playerData = _gameState.Participants.Find(x => x.Position == startingPosition);
@@ -78,7 +79,7 @@ public class ServerController : NetworkBehaviour
                     playerJoined.Position = startingPosition;
                 }
             }
-            _gameState.GridSystem.SetCharacter(GridSystem.WorldToGridPosition(playerJoined.Position), playerJoined.ParticipantId);
+            _gameState.GridSystem.SetCharacter(GridSystem.WorldToGridPosition(playerJoined.Position.ToVector3()), playerJoined.ParticipantId);
             _gameState.Participants.Add(playerJoined);
             _connectedParticipants.Add(connectedClientId);
         }
@@ -87,8 +88,13 @@ public class ServerController : NetworkBehaviour
         {
             _connectedParticipants.Add(connectedClientId);
         }
-        
-        string gameStateJson = JsonUtility.ToJson(_gameState);
+
+        JsonSerializerSettings settings = new JsonSerializerSettings
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        };
+        settings.Converters.Add(new Vector2IntConverter());
+        string gameStateJson = JsonConvert.SerializeObject(_gameState, settings); //JsonUtility.ToJson(_gameState);
         _clients.OnConnectedClientRpc(gameStateJson, connectedClientId);
 
     }
@@ -131,7 +137,7 @@ public class ServerController : NetworkBehaviour
 
         // Try Reposition
         ulong clientId = serverRpcParams.Receive.SenderClientId;
-        int playerIndexOccupyingCell =_gameState.Participants.FindIndex(p => p.Position == requestedPosition);
+        int playerIndexOccupyingCell =_gameState.Participants.FindIndex(p => p.Position.ToVector3() == requestedPosition);
         if(playerIndexOccupyingCell == -1)
         {
             // Available Cell
@@ -143,7 +149,7 @@ public class ServerController : NetworkBehaviour
             }
 
             // Update Position
-            playerData.Position = requestedPosition;
+            playerData.Position = new NetworkVector3(requestedPosition);
             _gameState.UpdatePlayerData(clientId, playerData);
             Debug.Log($"Server - Match Preparation - Client {clientId} moved to starting cell {requestedPosition}");
             _clients.RepositionClientRpc(clientId, requestedPosition);
@@ -193,24 +199,24 @@ public class ServerController : NetworkBehaviour
         gameState.matchState = MatchState.Preparing;
 
         // Starting Positions
-        gameState.StartingPositions = new List<Vector3>();
-        gameState.StartingPositions.Add(new Vector3(17, 0, 19));
-        gameState.StartingPositions.Add(new Vector3(2, 0, 1));
+        gameState.StartingPositions = new List<NetworkVector3>();
+        gameState.StartingPositions.Add(new NetworkVector3(17, 0, 19));
+        gameState.StartingPositions.Add(new NetworkVector3(2, 0, 1));
 
-        gameState.StartingPositions.Add(new Vector3(7, 0, 19));
-        gameState.StartingPositions.Add(new Vector3(12, 0, 1));
+        gameState.StartingPositions.Add(new NetworkVector3(7, 0, 19));
+        gameState.StartingPositions.Add(new NetworkVector3(12, 0, 1));
 
-        gameState.StartingPositions.Add(new Vector3(1, 0, 18));
-        gameState.StartingPositions.Add(new Vector3(18, 0, 2));
+        gameState.StartingPositions.Add(new NetworkVector3(1, 0, 18));
+        gameState.StartingPositions.Add(new NetworkVector3(18, 0, 2));
 
-        gameState.StartingPositions.Add(new Vector3(17, 0, 1));
-        gameState.StartingPositions.Add(new Vector3(2, 0, 19));
+        gameState.StartingPositions.Add(new NetworkVector3(17, 0, 1));
+        gameState.StartingPositions.Add(new NetworkVector3(2, 0, 19));
 
-        gameState.StartingPositions.Add(new Vector3(7, 0, 1));
-        gameState.StartingPositions.Add(new Vector3(12, 0, 19));
+        gameState.StartingPositions.Add(new NetworkVector3(7, 0, 1));
+        gameState.StartingPositions.Add(new NetworkVector3(12, 0, 19));
 
-        gameState.StartingPositions.Add(new Vector3(1, 0, 2));
-        gameState.StartingPositions.Add(new Vector3(18, 0, 18));
+        gameState.StartingPositions.Add(new NetworkVector3(1, 0, 2));
+        gameState.StartingPositions.Add(new NetworkVector3(18, 0, 18));
         // gameState.StartingPositions.Add(new Vector3(0, 0, 0));
         Debug.Log("Server - Created Starting Positions");
         

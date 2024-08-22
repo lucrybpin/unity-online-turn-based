@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f7e8746e016e64f9d8d3323b32627e, type: 3}
+  m_Name: WarriorClassData
+  m_EditorClassIdentifier: 
+  classData:
+    Class: 0
+    Skills:
+    - {fileID: 11400000, guid: 1bcc75e7b9818744db969b2526620b03, type: 2}
+    - {fileID: 11400000, guid: caa92246f38e44c4680424eac2b91c49, type: 2}

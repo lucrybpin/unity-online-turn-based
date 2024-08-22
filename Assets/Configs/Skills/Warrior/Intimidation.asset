@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1d6414c6ba7cd4a88fa10f1ffe83c3, type: 3}
+  m_Name: Intimidation
+  m_EditorClassIdentifier: 
+  skillData:
+    Id: 0
+    Element: 2
+    Description: 'One single blow that pushes the target away from you.
+
+      Additional
+      damage can be caused if the target hits a wall.'
+    FlavorText: It's nothing personal, I just need more space.
+    SkillLevelInfo:
+    - Level: 1
+      ApCost: 4
+      Effects:
+      - TargetType: 1
+        EffectType: 0
+        Min: 1
+        Max: 2
+        Duration: 0
+      CriticalBase: 50
+      RangeMin: 1
+      RangeMax: 1
+      RangeType: 1
+      IsLockedRange: 1
+      RequiredLevel: 0
+      TurnCap: 0
+    - Level: 2
+      ApCost: 4
+      Effects:
+      - TargetType: 1
+        EffectType: 0
+        Min: 2
+        Max: 3
+        Duration: 0
+      CriticalBase: 50
+      RangeMin: 1
+      RangeMax: 1
+      RangeType: 1
+      IsLockedRange: 1
+      RequiredLevel: 0
+      TurnCap: 0
+    - Level: 3
+      ApCost: 3
+      Effects:
+      - TargetType: 1
+        EffectType: 0
+        Min: 3
+        Max: 4
+        Duration: 0
+      CriticalBase: 50
+      RangeMin: 1
+      RangeMax: 1
+      RangeType: 1
+      IsLockedRange: 1
+      RequiredLevel: 0
+      TurnCap: 0
+    - Level: 4
+      ApCost: 3
+      Effects:
+      - TargetType: 1
+        EffectType: 0
+        Min: 4
+        Max: 5
+        Duration: 0
+      CriticalBase: 45
+      RangeMin: 1
+      RangeMax: 1
+      RangeType: 1
+      IsLockedRange: 1
+      RequiredLevel: 0
+      TurnCap: 0
+    - Level: 5
+      ApCost: 3
+      Effects:
+      - TargetType: 1
+        EffectType: 0
+        Min: 5
+        Max: 6
+        Duration: 0
+      CriticalBase: 40
+      RangeMin: 1
+      RangeMax: 1
+      RangeType: 1
+      IsLockedRange: 1
+      RequiredLevel: 0
+      TurnCap: 0
+    - Level: 6
+      ApCost: 2
+      Effects:
+      - TargetType: 0
+        EffectType: 0
+        Min: 5
+        Max: 9
+        Duration: 0
+      CriticalBase: 40
+      RangeMin: 1
+      RangeMax: 1
+      RangeType: 1
+      IsLockedRange: 1
+      RequiredLevel: 0
+      TurnCap: 0
